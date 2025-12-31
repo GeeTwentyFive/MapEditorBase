@@ -29,7 +29,13 @@ func _input(event: InputEvent) -> void:
 			MOUSE_BUTTON_WHEEL_UP: move_speed *= MOVE_SPEED_SCROLL_MULTIPLIER
 			MOUSE_BUTTON_WHEEL_DOWN: move_speed /= MOVE_SPEED_SCROLL_MULTIPLIER
 	
-	# TODO: F = toggle fullbright (Environment -> Ambient Light)
+	if (event is InputEventKey and event.pressed and not event.is_echo()):
+		match event.keycode:
+			KEY_F:
+				if environment.ambient_light_energy != 0.0:
+					environment.ambient_light_energy = 1.0
+				else:
+					environment.ambient_light_energy = 0.0
 
 func _physics_process(delta: float) -> void:
 	if get_viewport().gui_get_focus_owner() != null: return

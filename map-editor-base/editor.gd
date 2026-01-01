@@ -22,12 +22,28 @@ func InstantiateMapObject(
 	add_child(instance)
 	return instance
 
-func BuildGUIForMapObjectInstance(target: MapObject) -> Control:
-	var gui: Control
+func BuildGUIForMapObjectInstance(target: MapObject) -> Array[Control]:
+	var controls: Array[Control]
 	
-	# TODO: Build MapObject instance's GUI based on its data
+	for key in target.data:
+		if target.data[key] is bool:
+			var checkbox := CheckBox.new()
+			checkbox.text = key
+			checkbox.toggled.connect(
+				func(toggled_on: bool):
+					target.data[key] = toggled_on
+			)
+			controls.append(checkbox)
+		
+		if target.data[key] is int:
+			pass # TODO
+		
+		else:
+			var label := Label3D.new()
+			label.text = key
+			controls.append(label)
 	
-	return gui
+	return controls
 
 func SelectMapObject(target: MapObject) -> void:
 	if selected_map_object == target: return
@@ -40,9 +56,8 @@ func SelectMapObject(target: MapObject) -> void:
 		%Gizmo3D.select(selected_map_object)
 	%Gizmo3D.show()
 	
-	%Inspector_panel.add_child(
-		BuildGUIForMapObjectInstance(selected_map_object)
-	)
+	for control in BuildGUIForMapObjectInstance(selected_map_object):
+		%Inspector_panel.add_child(control)
 
 func DeselectMapObject() -> void:
 	selected_map_object = null

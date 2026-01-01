@@ -1,4 +1,4 @@
 extends MeshInstance3D
 class_name MapObject
 
-var data: Dictionary
+var data: Dictionary[String, Variant]

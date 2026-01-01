@@ -1,6 +1,7 @@
 extends Node3D
 
 
+var registered_map_objects: Dictionary[String, Resource]
 var selected_map_object: MapObject
 
 
@@ -27,10 +28,9 @@ func SelectMapObject(target: MapObject) -> void:
 		%Gizmo3D.select(selected_map_object)
 	%Gizmo3D.show()
 	
-	%Inspector_panel_contents.add_child(
+	%Inspector_panel.add_child(
 		BuildGUIForMapObjectInstance(selected_map_object)
 	)
-	%Inspector_panel.show()
 
 func DeselectMapObject() -> void:
 	selected_map_object = null
@@ -38,9 +38,8 @@ func DeselectMapObject() -> void:
 	%Gizmo3D.clear_selection()
 	%Gizmo3D.hide()
 	
-	for child in %Inspector_panel_contents.get_children():
+	for child in %Inspector_panel.get_children():
 		child.queue_free()
-	%Inspector_panel.hide()
 
 func DeleteSelectedMapObject() -> void:
 	if selected_map_object:
@@ -75,6 +74,9 @@ func Load(path: String) -> void:
 	for instance in loaded_data:
 		pass # TODO: Check if exists as MapObject type -> instantiate
 
+func _ready() -> void:
+	pass # TODO: AddMapObjectButtons from res://MapObjects/
+
 func _physics_process(_delta: float) -> void:
 	if get_viewport().gui_get_focus_owner() != null: return
 	if %Gizmo3D.hovering or %Gizmo3D.editing: return
@@ -104,6 +106,10 @@ func _input(event: InputEvent) -> void:
 
 
 #region CALLBACKS
+
+func _on_button_add_pressed() -> void:
+	%AddMapObjectPopup.popup_centered()
+
 
 func _on_button_save_pressed() -> void:
 	%SaveFileDialog.popup_centered()

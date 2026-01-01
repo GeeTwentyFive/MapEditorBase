@@ -103,8 +103,12 @@ func Load(path: String) -> void:
 		instance.data = map_object["data"]
 
 func _ready() -> void:
-	pass # TODO: AddMapObjectButtons from res://MapObjects/
-	# ^ + TODO: .set_meta("type")
+	for file in DirAccess.open("res://MapObjects").get_files():
+		var instance: MapObject = load(file).new()
+		instance.set_meta("type", file.get_file())
+		registered_map_objects[file.get_file()] = instance
+	
+	# TODO: %AddMapObjectButtons from registered_map_objects
 
 func _physics_process(_delta: float) -> void:
 	if get_viewport().gui_get_focus_owner() != null: return

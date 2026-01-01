@@ -27,3 +27,28 @@ func _ready() -> void:
 (supported value types are `bool`, `int`, `float`, `String`, and `Color`. Use `null` for just label in GUI.)
 
 2) Export
+
+
+# Controls
+
+- While holding down right mouse button:
+        - W = forward
+        - S = back
+        - A = left
+        - D = right
+        - Space = up
+        - CTRL = down
+
+- Click = select/deselect MapObject instance
+
+- Alt+D = duplicate selected MapObject instance
+
+- Del = delete selected MapObject instance
+
+- Scroll = change camera move speed
+
+- F = toggle Fullbright
+
+- 0 = reset camera position to 0, 0, 0
+
+- Esc = unfocus GUI

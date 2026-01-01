@@ -108,9 +108,9 @@ func _input(event: InputEvent) -> void:
 			KEY_DELETE: DeleteSelectedMapObject()
 			KEY_D:
 				if Input.is_key_pressed(KEY_ALT) and selected_map_object:
-					SelectMapObject(InstantiateMapObject(
-						# TODO
-					))
+					var clone := selected_map_object.duplicate()
+					add_child(clone)
+					SelectMapObject(clone)
 
 
 #region CALLBACKS

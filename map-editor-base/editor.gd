@@ -35,8 +35,62 @@ func BuildGUIForMapObjectInstance(target: MapObject) -> Array[Control]:
 			)
 			controls.append(checkbox)
 		
-		if target.data[key] is int:
-			pass # TODO
+		elif target.data[key] is int:
+			var hcontainer := HBoxContainer.new()
+			var label := Label3D.new()
+			label.text = key
+			hcontainer.add_child(label)
+			var spinbox := SpinBox.new()
+			spinbox.rounded = true
+			spinbox.allow_greater = true
+			spinbox.allow_lesser = true
+			spinbox.value_changed.connect(
+				func(value: float):
+					target.data[key] = int(value)
+			)
+			hcontainer.add_child(spinbox)
+			controls.append(hcontainer)
+		
+		elif target.data[key] is float:
+			var hcontainer := HBoxContainer.new()
+			var label := Label3D.new()
+			label.text = key
+			hcontainer.add_child(label)
+			var spinbox := SpinBox.new()
+			spinbox.allow_greater = true
+			spinbox.allow_lesser = true
+			spinbox.value_changed.connect(
+				func(value: float):
+					target.data[key] = value
+			)
+			hcontainer.add_child(spinbox)
+			controls.append(hcontainer)
+		
+		elif target.data[key] is String:
+			var hcontainer := HBoxContainer.new()
+			var label := Label3D.new()
+			label.text = key
+			hcontainer.add_child(label)
+			var line_edit := LineEdit.new()
+			line_edit.text_changed.connect(
+				func(new_text: String):
+					target.data[key] = new_text
+			)
+			hcontainer.add_child(line_edit)
+			controls.append(hcontainer)
+		
+		elif target.data[key] is Color:
+			var vcontainer := VBoxContainer.new()
+			var label := Label3D.new()
+			label.text = key
+			vcontainer.add_child(label)
+			var color_picker := ColorPicker.new()
+			color_picker.color_changed.connect(
+				func(color: Color):
+					target.data[key] = color
+			)
+			vcontainer.add_child(color_picker)
+			controls.append(vcontainer)
 		
 		else:
 			var label := Label3D.new()

@@ -105,6 +105,8 @@ func Load(path: String) -> void:
 
 func _ready() -> void:
 	for file in DirAccess.open("res://MapObjects").get_files():
+		if file == "_BASE.gd": continue
+		
 		var instance: MapObject = load(file).new()
 		instance.set_meta("type", file.get_file())
 		var collider := Area3D.new()

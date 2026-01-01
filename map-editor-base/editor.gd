@@ -29,6 +29,7 @@ func BuildGUIForMapObjectInstance(target: MapObject) -> Array[Control]:
 		if target.data[key] is bool:
 			var checkbox := CheckBox.new()
 			checkbox.text = key
+			checkbox.button_pressed = target.data[key]
 			checkbox.toggled.connect(
 				func(toggled_on: bool):
 					target.data[key] = toggled_on
@@ -37,13 +38,14 @@ func BuildGUIForMapObjectInstance(target: MapObject) -> Array[Control]:
 		
 		elif target.data[key] is int:
 			var hcontainer := HBoxContainer.new()
-			var label := Label3D.new()
+			var label := Label.new()
 			label.text = key
 			hcontainer.add_child(label)
 			var spinbox := SpinBox.new()
 			spinbox.rounded = true
 			spinbox.allow_greater = true
 			spinbox.allow_lesser = true
+			spinbox.value = target.data[key]
 			spinbox.value_changed.connect(
 				func(value: float):
 					target.data[key] = int(value)
@@ -53,12 +55,13 @@ func BuildGUIForMapObjectInstance(target: MapObject) -> Array[Control]:
 		
 		elif target.data[key] is float:
 			var hcontainer := HBoxContainer.new()
-			var label := Label3D.new()
+			var label := Label.new()
 			label.text = key
 			hcontainer.add_child(label)
 			var spinbox := SpinBox.new()
 			spinbox.allow_greater = true
 			spinbox.allow_lesser = true
+			spinbox.value = target.data[key]
 			spinbox.value_changed.connect(
 				func(value: float):
 					target.data[key] = value
@@ -68,10 +71,11 @@ func BuildGUIForMapObjectInstance(target: MapObject) -> Array[Control]:
 		
 		elif target.data[key] is String:
 			var hcontainer := HBoxContainer.new()
-			var label := Label3D.new()
+			var label := Label.new()
 			label.text = key
 			hcontainer.add_child(label)
 			var line_edit := LineEdit.new()
+			line_edit.text = target.data[key]
 			line_edit.text_changed.connect(
 				func(new_text: String):
 					target.data[key] = new_text
@@ -81,10 +85,11 @@ func BuildGUIForMapObjectInstance(target: MapObject) -> Array[Control]:
 		
 		elif target.data[key] is Color:
 			var vcontainer := VBoxContainer.new()
-			var label := Label3D.new()
+			var label := Label.new()
 			label.text = key
 			vcontainer.add_child(label)
 			var color_picker := ColorPicker.new()
+			color_picker.color = target.data[key]
 			color_picker.color_changed.connect(
 				func(color: Color):
 					target.data[key] = color
@@ -93,7 +98,7 @@ func BuildGUIForMapObjectInstance(target: MapObject) -> Array[Control]:
 			controls.append(vcontainer)
 		
 		else:
-			var label := Label3D.new()
+			var label := Label.new()
 			label.text = key
 			controls.append(label)
 	
@@ -152,7 +157,7 @@ func Save(path: String) -> void:
 		JSON.stringify(map_object_instances_data, "\t")
 	)
 
-func Load(path: String) -> void:
+func Load(path: String) -> void: # TODO: Fix (data?)
 	DeselectMapObject()
 	
 	var children := get_children()
@@ -179,7 +184,7 @@ func _ready() -> void:
 	for file in DirAccess.open("res://MapObjects").get_files():
 		if file == "_BASE.gd": continue
 		
-		var res := load(file)
+		var res := load("res://MapObjects/" + file)
 		if res == null: continue
 		var instance: MapObject = res.new()
 		instance.set_meta("type", file.get_file())
@@ -231,7 +236,7 @@ func _input(event: InputEvent) -> void:
 					add_child(clone)
 					SelectMapObject(clone)
 
-
+# TODO: Pos, rot, & scale GUI
 #region CALLBACKS
 
 func _on_button_add_pressed() -> void:

@@ -268,4 +268,9 @@ func _on_gizmo_3d_transform_changed(mode: Gizmo3D.TransformMode, value: Vector3)
 func _on_viewport_padding_mouse_entered() -> void:
 	get_viewport().gui_release_focus()
 
+
+# -- GUI --
+
+# TODO
+
 #endregion CALLBACKS

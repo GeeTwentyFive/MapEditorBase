@@ -56,6 +56,162 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Load"
 
+[node name="Label_Position" type="Label" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer"]
+layout_mode = 2
+text = "Position:"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "X"
+
+[node name="SpinBox_position_x" type="SpinBox" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+step = -1.0
+allow_greater = true
+allow_lesser = true
+custom_arrow_step = 1.0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Y"
+
+[node name="SpinBox_position_y" type="SpinBox" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+step = -1.0
+allow_greater = true
+allow_lesser = true
+custom_arrow_step = 1.0
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Z"
+
+[node name="SpinBox_position_z" type="SpinBox" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer/HBoxContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+step = -1.0
+allow_greater = true
+allow_lesser = true
+custom_arrow_step = 1.0
+
+[node name="Label_Rotation" type="Label" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer"]
+layout_mode = 2
+text = "Rotation:"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "X"
+
+[node name="SpinBox_rotation_x" type="SpinBox" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer/HBoxContainer5"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+step = -1.0
+allow_greater = true
+allow_lesser = true
+custom_arrow_step = 1.0
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+text = "Y"
+
+[node name="SpinBox_rotation_y" type="SpinBox" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer/HBoxContainer6"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+step = -1.0
+allow_greater = true
+allow_lesser = true
+custom_arrow_step = 1.0
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+text = "Z"
+
+[node name="SpinBox_rotation_z" type="SpinBox" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer/HBoxContainer7"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+step = -1.0
+allow_greater = true
+allow_lesser = true
+custom_arrow_step = 1.0
+
+[node name="Label_Scale" type="Label" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer"]
+layout_mode = 2
+text = "Scale:"
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+text = "X"
+
+[node name="SpinBox_scale_x" type="SpinBox" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer/HBoxContainer8"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+step = -1.0
+allow_greater = true
+allow_lesser = true
+custom_arrow_step = 1.0
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer/HBoxContainer9"]
+layout_mode = 2
+text = "Y"
+
+[node name="SpinBox_scale_y" type="SpinBox" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer/HBoxContainer9"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+step = -1.0
+allow_greater = true
+allow_lesser = true
+custom_arrow_step = 1.0
+
+[node name="HBoxContainer10" type="HBoxContainer" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer/HBoxContainer10"]
+layout_mode = 2
+text = "Z"
+
+[node name="SpinBox_scale_z" type="SpinBox" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer/HBoxContainer10"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+step = -1.0
+allow_greater = true
+allow_lesser = true
+custom_arrow_step = 1.0
+
 [node name="PanelContainer" type="PanelContainer" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3

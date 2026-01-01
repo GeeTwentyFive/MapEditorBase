@@ -26,7 +26,7 @@ func _init() -> void:
                 "Example key": "Example value"
         }
 ```
-(supported value types are `bool`, `int`, `float`, `String`, and `Color`. Use `null` for just label in GUI.)
+(supported value types are `bool`, `int`, `float`, and `String`. Use `null` for just label in GUI.)
 
 2) Export
 

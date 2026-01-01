@@ -138,6 +138,14 @@ func _ready() -> void:
 	for map_object_name in registered_map_objects:
 		var add_button := Button.new()
 		add_button.text = map_object_name
+		add_button.pressed.connect(
+			func():
+				SelectMapObject(InstantiateMapObject(
+					map_object_name,
+					%EditorCamera.position
+				))
+				%AddMapObjectPopup.hide()
+		)
 		%AddMapObjectButtons.add_child(add_button)
 
 func _physics_process(_delta: float) -> void:

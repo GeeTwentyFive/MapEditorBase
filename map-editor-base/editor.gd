@@ -61,7 +61,9 @@ func Save(path: String) -> void:
 	children.pop_front() # Exclude internal nodes
 	for child in children:
 		if child is MapObject:
-			map_object_instances_data.append(child.data)
+			map_object_instances_data.append({
+				child.get_meta("name"): child.data
+			})
 	
 	FileAccess.open(path, FileAccess.WRITE).store_string(
 		JSON.stringify(map_object_instances_data, "\t")

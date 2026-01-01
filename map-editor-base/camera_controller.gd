@@ -32,10 +32,9 @@ func _input(event: InputEvent) -> void:
 	if (event is InputEventKey and event.pressed and not event.is_echo()):
 		match event.keycode:
 			KEY_F:
-				if environment.ambient_light_energy != 0.0:
-					environment.ambient_light_energy = 1.0
-				else:
-					environment.ambient_light_energy = 0.0
+				if environment.ambient_light_source == environment.AMBIENT_SOURCE_DISABLED:
+					environment.ambient_light_source = environment.AMBIENT_SOURCE_COLOR
+				else: environment.ambient_light_source = environment.AMBIENT_SOURCE_DISABLED
 
 func _physics_process(delta: float) -> void:
 	if get_viewport().gui_get_focus_owner() != null: return

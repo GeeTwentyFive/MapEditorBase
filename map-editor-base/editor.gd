@@ -179,7 +179,9 @@ func _ready() -> void:
 	for file in DirAccess.open("res://MapObjects").get_files():
 		if file == "_BASE.gd": continue
 		
-		var instance: MapObject = load(file).new()
+		var res := load(file)
+		if res == null: continue
+		var instance: MapObject = res.new()
 		instance.set_meta("type", file.get_file())
 		var collider := Area3D.new()
 		var collision_shape := CollisionShape3D.new()

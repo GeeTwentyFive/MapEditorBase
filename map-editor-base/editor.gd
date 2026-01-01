@@ -106,7 +106,7 @@ func SelectMapObject(target: MapObject) -> void:
 	%Gizmo3D.show()
 	
 	for control in BuildGUIForMapObjectInstance(selected_map_object):
-		%Inspector_panel.add_child(control)
+		%Data_panel.add_child(control)
 
 func DeselectMapObject() -> void:
 	selected_map_object = null
@@ -114,7 +114,7 @@ func DeselectMapObject() -> void:
 	%Gizmo3D.clear_selection()
 	%Gizmo3D.hide()
 	
-	for child in %Inspector_panel.get_children():
+	for child in %Data_panel.get_children():
 		child.queue_free()
 
 func DeleteSelectedMapObject() -> void:

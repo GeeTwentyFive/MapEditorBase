@@ -32,38 +32,38 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="_/GUI/HSplitContainer"]
+[node name="Inspector" type="PanelContainer" parent="_/GUI/HSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="_/GUI/HSplitContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="_/GUI/HSplitContainer/Inspector"]
 layout_mode = 2
 
-[node name="Button_Add" type="Button" parent="_/GUI/HSplitContainer/PanelContainer/VBoxContainer"]
+[node name="Button_Add" type="Button" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer"]
 layout_mode = 2
 text = "Add"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="_/GUI/HSplitContainer/PanelContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer"]
 layout_mode = 2
 
-[node name="Button_Save" type="Button" parent="_/GUI/HSplitContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="Button_Save" type="Button" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Save"
 
-[node name="Button_Load" type="Button" parent="_/GUI/HSplitContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="Button_Load" type="Button" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Load"
 
-[node name="PanelContainer" type="PanelContainer" parent="_/GUI/HSplitContainer/PanelContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="_/GUI/HSplitContainer/PanelContainer/VBoxContainer/PanelContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="Inspector_panel" type="VBoxContainer" parent="_/GUI/HSplitContainer/PanelContainer/VBoxContainer/PanelContainer/ScrollContainer"]
+[node name="Data_panel" type="VBoxContainer" parent="_/GUI/HSplitContainer/Inspector/VBoxContainer/PanelContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -132,9 +132,9 @@ script = ExtResource("1_62x0m")
 _selection_box_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
 metadata/_custom_type_script = "uid://e3f1ox6y6cvg"
 
-[connection signal="pressed" from="_/GUI/HSplitContainer/PanelContainer/VBoxContainer/Button_Add" to="." method="_on_button_add_pressed"]
-[connection signal="pressed" from="_/GUI/HSplitContainer/PanelContainer/VBoxContainer/HBoxContainer/Button_Save" to="." method="_on_button_save_pressed"]
-[connection signal="pressed" from="_/GUI/HSplitContainer/PanelContainer/VBoxContainer/HBoxContainer/Button_Load" to="." method="_on_button_load_pressed"]
+[connection signal="pressed" from="_/GUI/HSplitContainer/Inspector/VBoxContainer/Button_Add" to="." method="_on_button_add_pressed"]
+[connection signal="pressed" from="_/GUI/HSplitContainer/Inspector/VBoxContainer/HBoxContainer/Button_Save" to="." method="_on_button_save_pressed"]
+[connection signal="pressed" from="_/GUI/HSplitContainer/Inspector/VBoxContainer/HBoxContainer/Button_Load" to="." method="_on_button_load_pressed"]
 [connection signal="mouse_entered" from="_/GUI/HSplitContainer/Viewport_padding" to="." method="_on_viewport_padding_mouse_entered"]
 [connection signal="file_selected" from="_/GUI/SaveFileDialog" to="." method="_on_save_file_dialog_file_selected"]
 [connection signal="file_selected" from="_/GUI/LoadFileDialog" to="." method="_on_load_file_dialog_file_selected"]

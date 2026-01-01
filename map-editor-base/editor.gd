@@ -5,6 +5,7 @@ var registered_map_objects: Dictionary[String, MapObject]
 var selected_map_object: MapObject
 
 
+@warning_ignore("shadowed_variable_base_class")
 func InstantiateMapObject(
 	base: String,
 	pos: Vector3 = Vector3.ZERO,

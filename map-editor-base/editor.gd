@@ -1,17 +1,25 @@
 extends Node3D
 
 
-var registered_map_objects: Dictionary[String, Resource]
+var registered_map_objects: Dictionary[String, MapObject]
 var selected_map_object: MapObject
 
 
 func InstantiateMapObject(
-	base: MapObject,
+	base: String,
 	pos: Vector3 = Vector3.ZERO,
 	rot: Vector3 = Vector3.ZERO,
 	scale: Vector3 = Vector3.ONE
 ) -> MapObject:
-	return null # TODO
+	if not registered_map_objects.has(base):
+		return null
+	
+	var instance := registered_map_objects[base].duplicate()
+	instance.position = pos
+	instance.rotation = rot
+	instance.scale = scale
+	add_child(instance)
+	return instance
 
 func BuildGUIForMapObjectInstance(target: MapObject) -> Control:
 	var gui: Control

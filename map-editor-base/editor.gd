@@ -37,10 +37,10 @@ func BuildGUIForMapObjectInstance(target: MapObject) -> Array[Control]:
 			controls.append(checkbox)
 		
 		elif target.data[key] is int:
-			var hcontainer := HBoxContainer.new()
+			var vcontainer := VBoxContainer.new()
 			var label := Label.new()
 			label.text = key
-			hcontainer.add_child(label)
+			vcontainer.add_child(label)
 			var spinbox := SpinBox.new()
 			spinbox.rounded = true
 			spinbox.allow_greater = true
@@ -50,14 +50,15 @@ func BuildGUIForMapObjectInstance(target: MapObject) -> Array[Control]:
 				func(value: float):
 					target.data[key] = int(value)
 			)
-			hcontainer.add_child(spinbox)
-			controls.append(hcontainer)
+			spinbox.size_flags_horizontal |= Control.SIZE_EXPAND_FILL
+			vcontainer.add_child(spinbox)
+			controls.append(vcontainer)
 		
 		elif target.data[key] is float:
-			var hcontainer := HBoxContainer.new()
+			var vcontainer := VBoxContainer.new()
 			var label := Label.new()
 			label.text = key
-			hcontainer.add_child(label)
+			vcontainer.add_child(label)
 			var spinbox := SpinBox.new()
 			spinbox.step = -1
 			spinbox.allow_greater = true
@@ -67,22 +68,24 @@ func BuildGUIForMapObjectInstance(target: MapObject) -> Array[Control]:
 				func(value: float):
 					target.data[key] = value
 			)
-			hcontainer.add_child(spinbox)
-			controls.append(hcontainer)
+			spinbox.size_flags_horizontal |= Control.SIZE_EXPAND_FILL
+			vcontainer.add_child(spinbox)
+			controls.append(vcontainer)
 		
 		elif target.data[key] is String:
-			var hcontainer := HBoxContainer.new()
+			var vcontainer := VBoxContainer.new()
 			var label := Label.new()
 			label.text = key
-			hcontainer.add_child(label)
+			vcontainer.add_child(label)
 			var line_edit := LineEdit.new()
 			line_edit.text = target.data[key]
 			line_edit.text_changed.connect(
 				func(new_text: String):
 					target.data[key] = new_text
 			)
-			hcontainer.add_child(line_edit)
-			controls.append(hcontainer)
+			line_edit.size_flags_horizontal |= Control.SIZE_EXPAND_FILL
+			vcontainer.add_child(line_edit)
+			controls.append(vcontainer)
 		
 		else:
 			var label := Label.new()

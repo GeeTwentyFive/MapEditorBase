@@ -1,7 +1,7 @@
 Foundation for making your own 3D map editor
 
 Provides:
-- Automatic MapObject registration & handling based on contents of MapObjects/ directory
+- Automatic MapObject registration & handling
 - Automatically generated `Add` button panel GUI (based on registered MapObjects)
 - Automatic inspector panel GUI (based on registered MapObject's `data`)
 - Ray picking using automatically generated collision shape from given `mesh`

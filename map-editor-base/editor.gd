@@ -106,6 +106,12 @@ func _ready() -> void:
 	for file in DirAccess.open("res://MapObjects").get_files():
 		var instance: MapObject = load(file).new()
 		instance.set_meta("type", file.get_file())
+		var collider := Area3D.new()
+		var collision_shape := CollisionShape3D.new()
+		collision_shape.shape = instance.mesh.create_convex_shape()
+		collision_shape.transform = instance.transform
+		collider.add_child(collision_shape)
+		instance.add_child(collider)
 		registered_map_objects[file.get_file()] = instance
 	
 	for map_object_name in registered_map_objects:
@@ -125,7 +131,7 @@ func _physics_process(_delta: float) -> void:
 		ray_query_params.collide_with_areas = true
 		var raycast_result := get_world_3d().direct_space_state.intersect_ray(ray_query_params)
 		if raycast_result:
-			SelectMapObject(raycast_result["collider"])
+			SelectMapObject(raycast_result["collider"].get_parent())
 		else:
 			DeselectMapObject()
 

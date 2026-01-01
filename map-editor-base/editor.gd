@@ -59,6 +59,7 @@ func BuildGUIForMapObjectInstance(target: MapObject) -> Array[Control]:
 			label.text = key
 			hcontainer.add_child(label)
 			var spinbox := SpinBox.new()
+			spinbox.step = -1
 			spinbox.allow_greater = true
 			spinbox.allow_lesser = true
 			spinbox.value = target.data[key]
@@ -82,20 +83,6 @@ func BuildGUIForMapObjectInstance(target: MapObject) -> Array[Control]:
 			)
 			hcontainer.add_child(line_edit)
 			controls.append(hcontainer)
-		
-		elif target.data[key] is Color:
-			var vcontainer := VBoxContainer.new()
-			var label := Label.new()
-			label.text = key
-			vcontainer.add_child(label)
-			var color_picker := ColorPicker.new()
-			color_picker.color = target.data[key]
-			color_picker.color_changed.connect(
-				func(color: Color):
-					target.data[key] = color
-			)
-			vcontainer.add_child(color_picker)
-			controls.append(vcontainer)
 		
 		else:
 			var label := Label.new()
@@ -157,7 +144,7 @@ func Save(path: String) -> void:
 		JSON.stringify(map_object_instances_data, "\t")
 	)
 
-func Load(path: String) -> void: # TODO: Fix (data?)
+func Load(path: String) -> void:
 	DeselectMapObject()
 	
 	var children := get_children()
@@ -178,7 +165,8 @@ func Load(path: String) -> void: # TODO: Fix (data?)
 			Vector3(map_object["rotation_x"], map_object["rotation_y"], map_object["rotation_z"]),
 			Vector3(map_object["scale_x"], map_object["scale_y"], map_object["scale_z"])
 		)
-		instance.data = map_object["data"]
+		for key in map_object["data"]:
+			instance.data[key] = map_object["data"][key]
 
 func _ready() -> void:
 	for file in DirAccess.open("res://MapObjects").get_files():
@@ -198,7 +186,7 @@ func _ready() -> void:
 	
 	for map_object_name in registered_map_objects:
 		var add_button := Button.new()
-		add_button.text = map_object_name
+		add_button.text = map_object_name.get_basename()
 		add_button.pressed.connect(
 			func():
 				SelectMapObject(InstantiateMapObject(

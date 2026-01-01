@@ -219,8 +219,11 @@ func _physics_process(_delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if (event is InputEventKey and event.pressed and not event.is_echo()):
 		match event.keycode:
-			KEY_ESCAPE: get_viewport().gui_release_focus()
 			KEY_DELETE: DeleteSelectedMapObject()
+			KEY_ESCAPE:
+				get_viewport().gui_release_focus()
+				if Input.is_key_pressed(KEY_ALT):
+					get_tree().quit()
 			KEY_D:
 				if Input.is_key_pressed(KEY_ALT) and selected_map_object:
 					var clone := selected_map_object.duplicate()

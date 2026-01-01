@@ -108,7 +108,10 @@ func _ready() -> void:
 		instance.set_meta("type", file.get_file())
 		registered_map_objects[file.get_file()] = instance
 	
-	# TODO: %AddMapObjectButtons from registered_map_objects
+	for map_object_name in registered_map_objects:
+		var add_button := Button.new()
+		add_button.text = map_object_name
+		%AddMapObjectButtons.add_child(add_button)
 
 func _physics_process(_delta: float) -> void:
 	if get_viewport().gui_get_focus_owner() != null: return

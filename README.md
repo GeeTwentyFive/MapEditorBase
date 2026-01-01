@@ -19,7 +19,7 @@ Intended to be used either directly for new games by reading from output JSON, o
 extends MapObject
 
 
-func _ready() -> void:
+func _init() -> void:
         mesh = BoxMesh.new()
 
         data = {

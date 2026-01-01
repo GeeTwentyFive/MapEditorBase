@@ -60,9 +60,8 @@ func Save(path: String) -> void:
 	var children := get_children()
 	children.pop_front() # Exclude internal nodes
 	for child in children:
-		map_object_instances_data.append({
-			# TODO
-		})
+		if child is MapObject:
+			map_object_instances_data.append(child.data)
 	
 	FileAccess.open(path, FileAccess.WRITE).store_string(
 		JSON.stringify(map_object_instances_data, "\t")
@@ -81,6 +80,7 @@ func Load(path: String) -> void:
 	)
 	for instance in loaded_data:
 		pass # TODO: Check if exists as MapObject type -> instantiate
+		# ^ + TODO: Recursive .data[] setting from JSON to instance
 
 func _ready() -> void:
 	pass # TODO: AddMapObjectButtons from res://MapObjects/

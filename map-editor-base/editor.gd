@@ -30,6 +30,9 @@ func BuildGUIForMapObjectInstance(target: MapObject) -> Control:
 	return gui
 
 func SelectMapObject(target: MapObject) -> void:
+	if selected_map_object == target: return
+	
+	DeselectMapObject()
 	selected_map_object = target
 	
 	if not %Gizmo3D.is_selected(selected_map_object):

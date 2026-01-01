@@ -1,4 +1,4 @@
-Foundation for making your own 3D map editor
+A foundation for implementing your own 3D map editor
 
 Provides:
 - Automatic MapObject registration & handling

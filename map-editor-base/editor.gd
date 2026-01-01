@@ -62,7 +62,17 @@ func Save(path: String) -> void:
 	for child in children:
 		if child is MapObject:
 			map_object_instances_data.append({
-				child.get_meta("name"): child.data
+				"type": child.get_meta("type"),
+				"position_x": child.position.x,
+				"position_y": child.position.y,
+				"position_z": child.position.z,
+				"rotation_x": child.rotation_degrees.x,
+				"rotation_y": child.rotation_degrees.y,
+				"rotation_z": child.rotation_degrees.z,
+				"scale_x": child.scale.x,
+				"scale_y": child.scale.y,
+				"scale_z": child.scale.z,
+				"data": child.data
 			})
 	
 	FileAccess.open(path, FileAccess.WRITE).store_string(
@@ -80,12 +90,21 @@ func Load(path: String) -> void:
 	var loaded_data = JSON.parse_string(
 		FileAccess.open(path, FileAccess.READ).get_as_text()
 	)
-	for instance in loaded_data:
-		pass # TODO: Check if exists as MapObject type -> instantiate
-		# ^ + TODO: Recursive .data[] setting from JSON to instance
+	for map_object in loaded_data:
+		if map_object["type"] not in registered_map_objects:
+			continue
+		
+		var instance := InstantiateMapObject(
+			map_object["type"],
+			Vector3(map_object["position_x"], map_object["position_y"], map_object["position_z"]),
+			Vector3(map_object["rotation_x"], map_object["rotation_y"], map_object["rotation_z"]),
+			Vector3(map_object["scale_x"], map_object["scale_y"], map_object["scale_z"])
+		)
+		instance.data = map_object["data"]
 
 func _ready() -> void:
 	pass # TODO: AddMapObjectButtons from res://MapObjects/
+	# ^ + TODO: .set_meta("type")
 
 func _physics_process(_delta: float) -> void:
 	if get_viewport().gui_get_focus_owner() != null: return

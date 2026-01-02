@@ -22,7 +22,7 @@ func InstantiateMapObject(
 	add_child(instance)
 	return instance
 
-func BuildGUIForMapObjectInstance(target: MapObject) -> Array[Control]:
+func BuildGUIForMapObjectInstanceData(target: MapObject) -> Array[Control]:
 	var controls: Array[Control]
 	
 	for key in target.data:
@@ -95,9 +95,6 @@ func BuildGUIForMapObjectInstance(target: MapObject) -> Array[Control]:
 	return controls
 
 func SelectMapObject(target: MapObject) -> void:
-	if selected_map_object == target: return
-	
-	DeselectMapObject()
 	selected_map_object = target
 	
 	if not %Gizmo3D.is_selected(selected_map_object):
@@ -105,7 +102,19 @@ func SelectMapObject(target: MapObject) -> void:
 		%Gizmo3D.select(selected_map_object)
 	%Gizmo3D.show()
 	
-	for control in BuildGUIForMapObjectInstance(selected_map_object):
+	%SpinBox_position_x.value = selected_map_object.position.x
+	%SpinBox_position_y.value = selected_map_object.position.y
+	%SpinBox_position_z.value = selected_map_object.position.z
+	%SpinBox_rotation_x.value = selected_map_object.rotation_degrees.x
+	%SpinBox_rotation_y.value = selected_map_object.rotation_degrees.y
+	%SpinBox_rotation_z.value = selected_map_object.rotation_degrees.z
+	%SpinBox_scale_x.value = selected_map_object.scale.x
+	%SpinBox_scale_y.value = selected_map_object.scale.y
+	%SpinBox_scale_z.value = selected_map_object.scale.z
+	
+	for child in %Data_panel.get_children():
+		child.queue_free()
+	for control in BuildGUIForMapObjectInstanceData(selected_map_object):
 		%Data_panel.add_child(control)
 
 func DeselectMapObject() -> void:
@@ -113,6 +122,16 @@ func DeselectMapObject() -> void:
 	
 	%Gizmo3D.clear_selection()
 	%Gizmo3D.hide()
+	
+	%SpinBox_position_x.value = 0.0
+	%SpinBox_position_y.value = 0.0
+	%SpinBox_position_z.value = 0.0
+	%SpinBox_rotation_x.value = 0.0
+	%SpinBox_rotation_y.value = 0.0
+	%SpinBox_rotation_z.value = 0.0
+	%SpinBox_scale_x.value = 0.0
+	%SpinBox_scale_y.value = 0.0
+	%SpinBox_scale_z.value = 0.0
 	
 	for child in %Data_panel.get_children():
 		child.queue_free()
@@ -230,7 +249,7 @@ func _input(event: InputEvent) -> void:
 					add_child(clone)
 					SelectMapObject(clone)
 
-# TODO: Pos, rot, & scale GUI
+
 #region CALLBACKS
 
 func _on_button_add_pressed() -> void:
@@ -271,6 +290,76 @@ func _on_viewport_padding_mouse_entered() -> void:
 
 # -- GUI --
 
-# TODO
+func _on_spin_box_position_x_value_changed(value: float, source: Range) -> void:
+	get_viewport().gui_release_focus()
+	if selected_map_object:
+		selected_map_object.position.x = value
+		SelectMapObject(selected_map_object) # Refresh
+	else:
+		source.set_value_no_signal(0.0)
+
+func _on_spin_box_position_y_value_changed(value: float, source: Range) -> void:
+	get_viewport().gui_release_focus()
+	if selected_map_object:
+		selected_map_object.position.y = value
+		SelectMapObject(selected_map_object) # Refresh
+	else:
+		source.set_value_no_signal(0.0)
+
+func _on_spin_box_position_z_value_changed(value: float, source: Range) -> void:
+	get_viewport().gui_release_focus()
+	if selected_map_object:
+		selected_map_object.position.z = value
+		SelectMapObject(selected_map_object) # Refresh
+	else:
+		source.set_value_no_signal(0.0)
+
+func _on_spin_box_rotation_x_value_changed(value: float, source: Range) -> void:
+	get_viewport().gui_release_focus()
+	if selected_map_object:
+		selected_map_object.rotation_degrees.x = value
+		SelectMapObject(selected_map_object) # Refresh
+	else:
+		source.set_value_no_signal(0.0)
+
+func _on_spin_box_rotation_y_value_changed(value: float, source: Range) -> void:
+	get_viewport().gui_release_focus()
+	if selected_map_object:
+		selected_map_object.rotation_degrees.y = value
+		SelectMapObject(selected_map_object) # Refresh
+	else:
+		source.set_value_no_signal(0.0)
+
+func _on_spin_box_rotation_z_value_changed(value: float, source: Range) -> void:
+	get_viewport().gui_release_focus()
+	if selected_map_object:
+		selected_map_object.rotation_degrees.z = value
+		SelectMapObject(selected_map_object) # Refresh
+	else:
+		source.set_value_no_signal(0.0)
+
+func _on_spin_box_scale_x_value_changed(value: float, source: Range) -> void:
+	get_viewport().gui_release_focus()
+	if selected_map_object:
+		selected_map_object.scale.x = value
+		SelectMapObject(selected_map_object) # Refresh
+	else:
+		source.set_value_no_signal(0.0)
+
+func _on_spin_box_scale_y_value_changed(value: float, source: Range) -> void:
+	get_viewport().gui_release_focus()
+	if selected_map_object:
+		selected_map_object.scale.y = value
+		SelectMapObject(selected_map_object) # Refresh
+	else:
+		source.set_value_no_signal(0.0)
+
+func _on_spin_box_scale_z_value_changed(value: float, source: Range) -> void:
+	get_viewport().gui_release_focus()
+	if selected_map_object:
+		selected_map_object.scale.z = value
+		SelectMapObject(selected_map_object) # Refresh
+	else:
+		source.set_value_no_signal(0.0)
 
 #endregion CALLBACKS

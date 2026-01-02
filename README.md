@@ -23,8 +23,12 @@ func _init() -> void:
         mesh = BoxMesh.new()
 
         data = {
-                "Example key": "Example value"
-        }
+		"Example Label": null,
+		"Example bool": true,
+		"Example int": 727,
+		"Example float": 3.14,
+		"Example String": "EXAMPLE"
+	}
 ```
 (supported value types are `bool`, `int`, `float`, and `String`. Use `null` for just label in GUI.)
 
@@ -54,3 +58,34 @@ func _init() -> void:
 - 0 = reset camera position to 0, 0, 0
 
 - Esc = unfocus GUI
+
+
+# Examples
+- `MapObjects/Light.gd`:
+```py
+extends MapObject
+
+
+var light: OmniLight3D
+
+
+func _init() -> void:
+	var _mesh = SphereMesh.new()
+	_mesh.height = 0.2
+	_mesh.radius = 0.1
+	mesh = _mesh
+	
+	light = OmniLight3D.new()
+	light.omni_attenuation = 2.0
+	light.shadow_enabled = true
+	add_child(light)
+	
+	data = {
+		"brightness": light.light_energy,
+		"range": light.omni_range
+	}
+
+func _process(_delta: float) -> void:
+	light.light_energy = data["brightness"]
+	light.omni_range = data["range"]
+```

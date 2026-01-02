@@ -23,12 +23,12 @@ func _init() -> void:
         mesh = BoxMesh.new()
 
         data = {
-		"Example Label": null,
-		"Example bool": true,
-		"Example int": 727,
-		"Example float": 3.14,
-		"Example String": "EXAMPLE"
-	}
+			"Example Label": null,
+			"Example bool": true,
+			"Example int": 727,
+			"Example float": 3.14,
+			"Example String": "EXAMPLE"
+		}
 ```
 (supported value types are `bool`, `int`, `float`, and `String`. Use `null` for just label in GUI.)
 

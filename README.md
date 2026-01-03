@@ -38,12 +38,12 @@ func _init() -> void:
 # Controls
 
 - While holding down right mouse button:
-        - W = forward
-        - S = back
-        - A = left
-        - D = right
-        - Space = up
-        - CTRL = down
+	- W = forward
+	- S = back
+	- A = left
+	- D = right
+	- Space = up
+	- CTRL = down
 
 - Click = select/deselect MapObject instance
 

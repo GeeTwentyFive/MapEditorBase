@@ -246,6 +246,7 @@ func _input(event: InputEvent) -> void:
 			KEY_D:
 				if Input.is_key_pressed(KEY_ALT) and selected_map_object:
 					var clone := selected_map_object.duplicate()
+					clone.data = selected_map_object.data
 					add_child(clone)
 					SelectMapObject(clone)
 

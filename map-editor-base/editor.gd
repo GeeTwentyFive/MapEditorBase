@@ -9,7 +9,7 @@ var selected_map_object: MapObject
 func InstantiateMapObject(
 	base: String,
 	pos: Vector3 = Vector3.ZERO,
-	rot: Vector3 = Vector3.ZERO,
+	rot_degrees: Vector3 = Vector3.ZERO,
 	scale: Vector3 = Vector3.ONE
 ) -> MapObject:
 	if not registered_map_objects.has(base):
@@ -17,7 +17,7 @@ func InstantiateMapObject(
 	
 	var instance := registered_map_objects[base].duplicate()
 	instance.position = pos
-	instance.rotation = rot
+	instance.rotation_degrees = rot_degrees
 	instance.scale = scale
 	add_child(instance)
 	return instance

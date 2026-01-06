@@ -26,6 +26,9 @@ func BuildGUIForMapObjectInstanceData(target: MapObject) -> Array[Control]:
 	var controls: Array[Control]
 	
 	for key in target.data:
+		if target.data[key] is int:
+			target.data[key] = float(target.data[key])
+		
 		if target.data[key] is bool:
 			var checkbox := CheckBox.new()
 			checkbox.text = key
@@ -35,24 +38,6 @@ func BuildGUIForMapObjectInstanceData(target: MapObject) -> Array[Control]:
 					target.data[key] = toggled_on
 			)
 			controls.append(checkbox)
-		
-		elif target.data[key] is int:
-			var vcontainer := VBoxContainer.new()
-			var label := Label.new()
-			label.text = key
-			vcontainer.add_child(label)
-			var spinbox := SpinBox.new()
-			spinbox.rounded = true
-			spinbox.allow_greater = true
-			spinbox.allow_lesser = true
-			spinbox.value = target.data[key]
-			spinbox.value_changed.connect(
-				func(value: float):
-					target.data[key] = int(value)
-			)
-			spinbox.size_flags_horizontal |= Control.SIZE_EXPAND_FILL
-			vcontainer.add_child(spinbox)
-			controls.append(vcontainer)
 		
 		elif target.data[key] is float:
 			var vcontainer := VBoxContainer.new()

@@ -25,12 +25,11 @@ func _init() -> void:
         data = {
 			"Example Label": null,
 			"Example bool": true,
-			"Example int": 727,
 			"Example float": 3.14,
 			"Example String": "EXAMPLE"
 		}
 ```
-(supported value types are `bool`, `int`, `float`, and `String`. Use `null` for just label in GUI.)
+(supported value types are `bool`, `float`, and `String`. Use `null` for just label in GUI.)
 
 2) Export
 

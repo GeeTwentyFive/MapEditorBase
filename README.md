@@ -76,7 +76,7 @@ func _init() -> void:
 		"Color A": 1.0
 	}
 
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var material := StandardMaterial3D.new()
 	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_DEPTH_PRE_PASS
 	material.albedo_color.r = data["Color R"]
@@ -110,7 +110,7 @@ func _init() -> void:
 		"range": light.omni_range
 	}
 
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	light.light_energy = data["brightness"]
 	light.omni_range = data["range"]
 ```

@@ -198,7 +198,7 @@ func Load(path: String) -> void:
 
 func _ready() -> void:
 	for file in DirAccess.open("res://MapObjects").get_files():
-		if file == "_BASE.gd": continue
+		if file.begins_with("_BASE."): continue
 		
 		var res := load("res://MapObjects/" + file)
 		if res == null: continue

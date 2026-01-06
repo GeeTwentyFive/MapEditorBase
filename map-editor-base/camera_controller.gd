@@ -39,10 +39,10 @@ func _input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	if get_viewport().gui_get_focus_owner() != null: return
 	
-	if Input.is_key_pressed(KEY_W): translate_object_local(Vector3.FORWARD * move_speed * delta)
-	if Input.is_key_pressed(KEY_S): translate_object_local(Vector3.BACK * move_speed * delta)
-	if Input.is_key_pressed(KEY_A): translate_object_local(Vector3.LEFT * move_speed * delta)
-	if Input.is_key_pressed(KEY_D): translate_object_local(Vector3.RIGHT * move_speed * delta)
-	if Input.is_key_pressed(KEY_SPACE): translate_object_local(Vector3.UP * move_speed * delta)
-	if Input.is_key_pressed(KEY_CTRL): translate_object_local(Vector3.DOWN * move_speed * delta)
-	if Input.is_key_pressed(KEY_0): global_position = Vector3.ZERO
+	if Input.is_action_pressed("Forward"): translate_object_local(Vector3.FORWARD * move_speed * delta)
+	if Input.is_action_pressed("Back"): translate_object_local(Vector3.BACK * move_speed * delta)
+	if Input.is_action_pressed("Left"): translate_object_local(Vector3.LEFT * move_speed * delta)
+	if Input.is_action_pressed("Right"): translate_object_local(Vector3.RIGHT * move_speed * delta)
+	if Input.is_action_pressed("Up"): translate_object_local(Vector3.UP * move_speed * delta)
+	if Input.is_action_pressed("Down"): translate_object_local(Vector3.DOWN * move_speed * delta)
+	if Input.is_action_pressed("Reset"): global_position = Vector3.ZERO

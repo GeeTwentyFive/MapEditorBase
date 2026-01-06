@@ -266,6 +266,34 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="Controls_Label" type="Label" parent="_/GUI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -184.0
+offset_top = -235.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 10
+text = "Move camera = RMB 
+Forward = W 
+Back = S 
+Left = A 
+Right = D 
+Up = Space 
+Down = CTRL 
+Change camera move speed = Scroll 
+Select/Deselect MapObject = Click 
+Duplicate selected MapObject = Alt+D 
+Delete selected MapObject = Del 
+Toggle fullbright = F 
+Reset camera position to 0, 0, 0 = 0 
+Unfocus GUI = ESC "
+horizontal_alignment = 2
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="_"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 shadow_enabled = true

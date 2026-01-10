@@ -188,14 +188,14 @@ func _ready() -> void:
 		var res := load("res://MapObjects/" + file)
 		if res == null: continue
 		var instance: MapObject = res.new()
-		instance.set_meta("type", file.get_file())
+		instance.set_meta("type", file.get_file().get_basename())
 		var collider := Area3D.new()
 		var collision_shape := CollisionShape3D.new()
 		collision_shape.shape = instance.mesh.create_convex_shape()
 		collision_shape.transform = instance.transform
 		collider.add_child(collision_shape)
 		instance.add_child(collider)
-		registered_map_objects[file.get_file()] = instance
+		registered_map_objects[file.get_file().get_basename()] = instance
 	
 	for map_object_name in registered_map_objects:
 		var add_button := Button.new()

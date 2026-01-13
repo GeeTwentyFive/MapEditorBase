@@ -16,6 +16,7 @@ script = ExtResource("1_agv3s")
 [node name="_" type="Node" parent="."]
 
 [node name="GUI" type="Control" parent="_"]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

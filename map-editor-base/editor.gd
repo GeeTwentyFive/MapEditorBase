@@ -230,12 +230,19 @@ func _physics_process(_delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if (event is InputEventKey and event.pressed and not event.is_echo()):
 		match event.keycode:
-			KEY_DELETE: DeleteSelectedMapObject()
+			KEY_DELETE:
+				# Prevent deletion of internal MapObjects:
+				if selected_map_object.get_script().resource_path.get_file()[0] == '_': return
+				DeleteSelectedMapObject()
+			
 			KEY_ESCAPE:
 				get_viewport().gui_release_focus()
 				%GUI.visible = not %GUI.visible
+			
 			KEY_D:
 				if Input.is_key_pressed(KEY_ALT) and selected_map_object:
+					# Prevent cloning of internal MapObjects:
+					if selected_map_object.get_script().resource_path.get_file()[0] == '_': return
 					var clone := selected_map_object.duplicate()
 					clone.data = selected_map_object.data.duplicate()
 					add_child(clone)

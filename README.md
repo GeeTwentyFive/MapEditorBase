@@ -14,7 +14,7 @@ Intended to be used either directly for new games by reading from output JSON, o
 
 # Usage
 
-1) Create a .gd script in MapObjects/ which inherits from `MapObject` and sets `mesh` (and optionally `data`), example:
+1) Create a .gd script (if its name begins with an '_' it won't show up in the Add popup GUI) in MapObjects/ which inherits from `MapObject` and sets `mesh` (and optionally `data`), example:
 ```py
 extends MapObject
 

@@ -198,6 +198,7 @@ func _ready() -> void:
 		registered_map_objects[file.get_file().get_basename()] = instance
 	
 	for map_object_name in registered_map_objects:
+		if map_object_name[0] == '_': continue
 		var add_button := Button.new()
 		add_button.text = map_object_name.get_basename()
 		add_button.pressed.connect(

@@ -241,9 +241,17 @@ func _input(event: InputEvent) -> void:
 			
 			KEY_D:
 				if Input.is_key_pressed(KEY_ALT) and selected_map_object:
+					var selected_map_object_base_name: String = (
+						selected_map_object.get_script().resource_path.get_file().get_basename()
+					)
 					# Prevent cloning of internal MapObjects:
-					if selected_map_object.get_script().resource_path.get_file()[0] == '_': return
-					var clone := selected_map_object.duplicate()
+					if selected_map_object_base_name[0] == '_': return
+					var clone := InstantiateMapObject(
+						selected_map_object_base_name,
+						selected_map_object.position,
+						selected_map_object.rotation_degrees,
+						selected_map_object.scale
+					)
 					clone.data = selected_map_object.data.duplicate()
 					add_child(clone)
 					SelectMapObject(clone)
